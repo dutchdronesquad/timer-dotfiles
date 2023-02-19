@@ -6,7 +6,7 @@ These are the dotfiles for the RotorHazard timers on a Raspberry Pi.
 
 ```bash
 git clone https://github.com/dutchdronesquad/timer-dotfiles.git
-cd dotfiles && bash install.sh
+cd timer-dotfiles && bash install.sh
 ```
 
 ## Installed packages
@@ -15,7 +15,7 @@ The following platforms are installed and set up by default with the bash script
 
 - GitHub CLI
 - Oh My Zsh (with powerlevel10k)
-- Pyenv
+- Pyenv (Raspberry Pi 4)
 - Nvm
 
 ### Install a python version
@@ -39,3 +39,12 @@ git config --global user.email "hello@example.com"
 nvm install 18
 nvm use 18
 nvm alias default 18
+```
+
+### Install RotorHazard
+
+Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server)
+
+```bash
+cd ~/timer-dotfiles/components && bash rotorhazard.sh
+```
