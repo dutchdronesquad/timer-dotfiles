@@ -1,12 +1,15 @@
 ## What is this?
 
-These are the dotfiles for the RotorHazard timers on a Raspberry Pi.
+These are the dotfiles for the RotorHazard timers on a Raspberry Pi 4.
+
+It is recommended that you install the additional packages only if you
+are using a Raspberry Pi 4 with enough RAM, to avoid slowing down your Pi.
 
 ## How to install configuration?
 
 ```bash
 git clone https://github.com/dutchdronesquad/timer-dotfiles.git
-cd timer-dotfiles && bash install.sh
+cd ~/timer-dotfiles && bash install.sh
 ```
 
 ## Installed packages
@@ -15,7 +18,7 @@ The following platforms are installed and set up by default with the bash script
 
 - GitHub CLI
 - Oh My Zsh (with powerlevel10k)
-- Pyenv (Raspberry Pi 4)
+- Pyenv
 - Nvm
 
 ### Install a python version
