@@ -5,7 +5,7 @@ version="3.2.1"
 echo
 echo "** Installing apt packages"
 sudo apt update && sudo apt upgrade
-sudo apt-get install -y python3-smbus python3-pip scons swig python3-rpi.gpio python3-dev
+sudo apt-get install -y python3-dev libffi-dev python3-smbus build-essential python3-pip scons swig python3-rpi.gpio
 
 
 #----------------------------------------------------------------------------
