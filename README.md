@@ -48,3 +48,38 @@ Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazar
 ```bash
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
+
+### Change the network interface priority
+
+The race timers are wired to our local intranet network by default, however when a
+Raspberry Pi is also connected to Wi-Fi it gives priority to the ethernet interface
+by default. However, this causes problems in the way we work during the training events.
+
+![alt network diagram](https://raw.githubusercontent.com/dutchdronesquad/timer-dotfiles/main/assets/DDS-Network.png)
+
+So we change the interface preference in the **dhcpcd**:
+
+```bash
+sudo nano /etc/dhcpcd.conf
+```
+
+Change and add the following lines:
+
+```bash
+interface eth0
+metric 350
+```
+
+__Note:__ The metric is the priority of the interface. The lower the number, the higher the priority.
+
+You can check the current priority of the interfaces with the following command:
+
+```bash
+ip route show
+```
+
+Restart the dhcpcd service:
+
+```bash
+sudo systemctl restart dhcpcd
+```
