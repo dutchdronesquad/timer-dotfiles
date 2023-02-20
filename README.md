@@ -1,9 +1,8 @@
 ## What is this?
 
-These are the dotfiles for the RotorHazard timers on a Raspberry Pi 4.
-
-It is recommended that you install the additional packages only if you
-are using a Raspberry Pi 4 with enough RAM, to avoid slowing down your Pi.
+These are the dotfiles for the RotorHazard timers on a Raspberry Pi. It is recommended
+that you install the additional packages only if you are using a Raspberry Pi 4 with
+enough RAM, to avoid slowing down your Pi.
 
 ## How to install configuration?
 
