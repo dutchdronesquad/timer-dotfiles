@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="3.2.0"
+version="3.2.1"
 
 echo
 echo "** Installing apt packages"
