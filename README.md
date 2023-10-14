@@ -53,6 +53,34 @@ Run the bash script, it will ask if you want to install or update and which vers
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
 
+### Change the hostname
+
+For example DDS uses: `dds-rotorhazard[number]` (by default the hostname is `raspberrypi`).
+
+1. Load the raspi-config tool by using the command below
+
+```bash
+sudo raspi-config
+```
+
+2. Go to `System Options`.
+3. Choose for `S4 Hostname`.
+4. Change the hostname for something you want.
+
+When you have completed these steps, reboot the Raspberry Pi and you are done.
+
+### Add encryption key to host
+
+1. Create a .ssh folder using `install`.
+
+```bash
+install -d -m 700 ~/.ssh
+```
+
+2. Create a `authorized_keys` file and paste your public_key into it:
+
+```bash
+nano ~/.ssh/authorized_keys
 ```
 
 ### Change the network interface priority
