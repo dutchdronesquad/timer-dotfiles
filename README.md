@@ -43,12 +43,16 @@ nvm use 18
 nvm alias default 18
 ```
 
-### Install RotorHazard
+### Install / Update RotorHazard
 
-Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server)
+Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server).
+
+Run the bash script, it will ask if you want to install or update and which version you want to install.
 
 ```bash
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
+```
+
 ```
 
 ### Change the network interface priority
