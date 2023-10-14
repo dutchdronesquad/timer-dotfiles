@@ -23,9 +23,9 @@ The following platforms are installed and set up by default with the bash script
 ### Install a python version
 
 ```bash
-pyenv install --list | grep " 3\.[91011]"
-pyenv install 3.10.10
-pyenv global 3.10.10
+pyenv install --list | grep -E '^  3\.(10|11|12)\.[0-9]+$'
+pyenv install 3.11.x
+pyenv global 3.11.x
 ```
 
 ### Setup Github account

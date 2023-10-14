@@ -48,7 +48,7 @@ alias pip_freeze="pip freeze > requirements.txt"
 alias pip_install="pip install -r requirements.txt"
 
 # Pyenv
-alias pyenv_list='pyenv install --list | grep " 3\.[910]"'
+alias pyenv_list="pyenv install --list | grep -E '^  3\.(10|11|12)\.[0-9]+$'"
 
 # fzf
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
