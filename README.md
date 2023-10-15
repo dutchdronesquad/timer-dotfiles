@@ -47,13 +47,13 @@ nvm alias default 18
 
 Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server).
 
-#### Development:
+**Development:**
 
 - Uses git clone, so you can easily work with branches and commits
 - You have the choice to clone from your own fork
 - There is no update script, I assume you know how git works.
 
-#### Production:
+**Production:**
 
 - Uses wget to retrieve the code
 - You have the option to install or update
@@ -70,6 +70,14 @@ If you opted for development, don't forget to check if an upstream repository is
 ```bash
 git remote -v
 git remote add upstream https://github.com/RotorHazard/RotorHazard.git
+```
+
+#### Plugins
+
+With the bash script below you can install the [FPVScores](https://github.com/FPVScores/FPVScores) plugin, you can choose between `development` or `non-development` and if the plugin already exists whether you want to overwrite it.
+
+```bash
+cd ~/timer-dotfiles/components && bash fpvscores.sh
 ```
 
 ### Change the hostname
