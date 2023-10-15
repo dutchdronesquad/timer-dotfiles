@@ -53,6 +53,14 @@ Run the bash script, it will ask if you want to install or update and which vers
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
 
+#### Development on RotorHazard
+
+If you also want to use the race timer for development purposes, you can use a modified bash script, where you can choose to use your own fork.
+
+```bash
+cd ~/timer-dotfiles/components && bash rotorhazard_dev.sh
+```
+
 ### Change the hostname
 
 For example DDS uses: `dds-rotorhazard[number]` (by default the hostname is `raspberrypi`).
