@@ -47,18 +47,29 @@ nvm alias default 18
 
 Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server).
 
-Run the bash script, it will ask if you want to install or update and which version you want to install.
+#### Development:
+
+- Uses git clone, so you can easily work with branches and commits
+- You have the choice to clone from your own fork
+- There is no update script, I assume you know how git works.
+
+#### Production:
+
+- Uses wget to retrieve the code
+- You have the option to install or update
+- You can indicate which version you want to install
+
+When running the bash script below you have the option to install RotorHazard for development or production purposes.
 
 ```bash
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
 
-#### Development on RotorHazard
-
-If you also want to use the race timer for development purposes, you can use a modified bash script, where you can choose to use your own fork.
+If you opted for development, don't forget to check if an upstream repository is set, as this will make it easier to get updates from the RotorHazard project.
 
 ```bash
-cd ~/timer-dotfiles/components && bash rotorhazard_dev.sh
+git remote -v
+git remote add upstream https://github.com/RotorHazard/RotorHazard.git
 ```
 
 ### Change the hostname
