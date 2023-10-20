@@ -72,6 +72,22 @@ git remote -v
 git remote add upstream https://github.com/RotorHazard/RotorHazard.git
 ```
 
+The RotorHazard startup service must include:
+
+```txt
+[Unit]
+Description=RotorHazard Server
+After=multi-user.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/RotorHazard/src/server
+ExecStart=/home/pi/RotorHazard/src/server/venv/bin/python server.py
+
+[Install]
+WantedBy=multi-user.target
+```
+
 #### Plugins
 
 With the bash script below you can install the [FPVScores](https://github.com/FPVScores/FPVScores) plugin, you can choose between `development` or `non-development` and if the plugin already exists whether you want to overwrite it.
