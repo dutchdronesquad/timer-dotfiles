@@ -134,29 +134,44 @@ by default. However, this causes problems in the way we work during the training
 
 ![alt network diagram](https://raw.githubusercontent.com/dutchdronesquad/timer-dotfiles/main/assets/DDS-Network.png)
 
-So we change the interface preference in the **dhcpcd**:
+We therefore need to prioritize wireless over wired by adjusting the metric in **Network Manager**:
+
+1. First check your current connections with:
 
 ```bash
-sudo nano /etc/dhcpcd.conf
+nmcli connection
 ```
 
-Change and add the following lines:
-
-```bash
-interface eth0
-metric 350
-```
+2. Change the metric with:
 
 __Note:__ The metric is the priority of the interface. The lower the number, the higher the priority.
+
+```bash
+sudo nmcli connection modify "Wired connection 1" ipv4.route-metric 1000
+```
 
 You can check the current priority of the interfaces with the following command:
 
 ```bash
-ip route show
+nmcli
 ```
 
-Restart the dhcpcd service:
+3. Restart the wired connection:
 
 ```bash
-sudo systemctl restart dhcpcd
+nmcli connection down "Wired connection 1" && nmcli connection up "Wired connection 1"
+```
+
+#### Make new Wi-Fi connection
+
+You can also create new connections via the Network Manager CLI:
+
+```bash
+sudo nmcli dev wifi connect "wifi name" password "password"
+```
+
+or if you want the password to be asked as input
+
+```bash
+sudo nmcli --ask dev wifi connect "wifi name"
 ```
