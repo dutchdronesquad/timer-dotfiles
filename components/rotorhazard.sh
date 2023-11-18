@@ -50,6 +50,7 @@ install_or_update_rotorhazard() {
         # Copy files from the old install
         cp RotorHazard.old/src/server/config.json RotorHazard/src/server/
         cp RotorHazard.old/src/server/database.db RotorHazard/src/server/
+        cp -r RotorHazard.old/src/server/venv RotorHazard/src/server/
     else
         echo "Invalid action. Exiting."
         exit 1
