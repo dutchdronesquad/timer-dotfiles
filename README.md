@@ -96,6 +96,10 @@ With the bash script below you can install the [FPVScores](https://github.com/FP
 cd ~/timer-dotfiles/components && bash fpvscores.sh
 ```
 
+```bash
+cd ~/timer-dotfiles/components && bash stream-overlays.sh
+```
+
 ### Change the hostname
 
 For example DDS uses: `dds-rotorhazard[number]` (by default the hostname is `raspberrypi`).
