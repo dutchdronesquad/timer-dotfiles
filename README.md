@@ -6,6 +6,12 @@ enough RAM, to avoid slowing down your Pi.
 
 ## How to install configuration?
 
+### Prerequirements
+
+- Git _(by default this is not installed in Raspberry Pi OS)_
+
+Once you meet the prerequirements, you can clone the project and install the dotfiles:
+
 ```bash
 git clone https://github.com/dutchdronesquad/timer-dotfiles.git
 cd ~/timer-dotfiles && bash install.sh
