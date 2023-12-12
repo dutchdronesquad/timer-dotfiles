@@ -1,3 +1,11 @@
+<!-- Header -->
+![alt Header of RH Timer Dotfiles](https://raw.githubusercontent.com/dutchdronesquad/timer-dotfiles/main/assets/header_timer-dotfiles-min.png)
+
+<!-- PROJECT SHIELDS -->
+![Project Stage][project-stage-shield]
+![Project Maintenance][maintenance-shield]
+[![License][license-shield]](LICENSE)
+
 ## What is this?
 
 These are the dotfiles for the RotorHazard timers on a Raspberry Pi. It is recommended
@@ -194,3 +202,12 @@ or if you want the password to be asked as input
 ```bash
 sudo nmcli --ask dev wifi connect "wifi name"
 ```
+
+## License
+
+Distributed under the **MIT** License. See [`LICENSE`](LICENSE) for more information.
+
+<!-- LINKS -->
+[license-shield]: https://img.shields.io/github/license/dutchdronesquad/timer-dotfiles.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2023.svg
+[project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
