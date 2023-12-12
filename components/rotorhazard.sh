@@ -17,11 +17,23 @@ install_rotorhazard_dev() {
     # Move back to the server folder
     cd ~/RotorHazard/src/server
 
+    # Ask if raspi-config should be run
+    read -r -p "Do you want to change Raspberry Pi settings with raspi-config? (y/n): " raspi_config
+    if [[ $raspi_config =~ ^(y|Y)$ ]]; then
+        setup_piconfig
+    fi
+
     echo "INFO: Creating a virtual environment"
     python3 -m venv venv
 
     # Update / install the venv packages
     update_virtualenv
+
+    # Ask if raspi-config should be run
+    read -r -p "Do you want to create the RotorHazard service? (y/n): " rh_service
+    if [[ $rh_service =~ ^(y|Y)$ ]]; then
+        create_rh_service
+    fi
 
     echo "DONE: Ready with RotorHazard DEV installation"
 }
@@ -74,7 +86,7 @@ install_or_update_rotorhazard() {
     update_virtualenv
 
     # Create the RH service
-    create_service
+    create_rh_service
     echo "DONE: Ready with RotorHazard installation"
 
     # Reboot after install - needed because of raspi changes
@@ -103,7 +115,7 @@ setup_piconfig() {
 }
 
 # Create the RotorHazard service
-create_service() {
+create_rh_service() {
     echo "INFO: Create the RotorHazard service"
     source ~/timer-dotfiles/components/scripts/rh-service.sh
 }
