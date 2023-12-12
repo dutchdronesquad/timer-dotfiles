@@ -59,7 +59,7 @@ nvm use 20
 nvm alias default 20
 ```
 
-### Install / Update RotorHazard
+## Install / Update RotorHazard
 
 _First check your python version and if not install one with pyenv before continuing with the RotorHazard installation._
 
@@ -86,7 +86,7 @@ When running the bash script below you have the option to install RotorHazard fo
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
 
-#### Development
+### Development
 
 If you opted for development, don't forget to check if an upstream repository is set, as this will make it easier to get updates from the RotorHazard project.
 
@@ -111,7 +111,7 @@ cd ~/timer-dotfiles/components/scripts && bash rh-service.sh
 
 
 
-#### Plugins
+### Plugins
 
 With the bash script below you can install the [FPVScores](https://github.com/FPVScores/FPVScores) plugin, you can choose between `development` or `non-development` and if the plugin already exists whether you want to overwrite it.
 
