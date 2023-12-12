@@ -71,6 +71,7 @@ Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazar
 - You have the choice to clone from your own fork
 - There is no update script, I assume you know how git works
 - Automatically creates a venv for you and installs the necessary packages from PyPi
+- Asks if you want to setup raspi-config and RotorHazard service
 
 **Production:**
 
@@ -202,6 +203,10 @@ or if you want the password to be asked as input
 ```bash
 sudo nmcli --ask dev wifi connect "wifi name"
 ```
+
+## Credits 🌟
+
+Certain parts were inspired by the Aaronsss [RH-Setup repository](https://github.com/Aaronsss/RH-Setup).
 
 ## License
 
