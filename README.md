@@ -53,25 +53,32 @@ nvm alias default 20
 
 ### Install / Update RotorHazard
 
+_First check your python version and if not install one with pyenv before continuing with the RotorHazard installation._
+
 Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server).
 
 **Development:**
 
 - Uses git clone, so you can easily work with branches and commits
 - You have the choice to clone from your own fork
-- There is no update script, I assume you know how git works.
+- There is no update script, I assume you know how git works
+- Automatically creates a venv for you and installs the necessary packages from PyPi
 
 **Production:**
 
 - Uses wget to retrieve the code
 - You have the option to install or update
 - You can indicate which version you want to install
+- Automatically creates a venv for you and installs the necessary packages from PyPi
+- Creates the RotorHazard service and sets the raspi-config correctly
 
 When running the bash script below you have the option to install RotorHazard for development or production purposes.
 
 ```bash
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
+
+#### Development
 
 If you opted for development, don't forget to check if an upstream repository is set, as this will make it easier to get updates from the RotorHazard project.
 
@@ -80,21 +87,21 @@ git remote -v
 git remote add upstream https://github.com/RotorHazard/RotorHazard.git
 ```
 
-The RotorHazard startup service must include:
+Set the correct raspi-config and boot file settings:
 
-```txt
-[Unit]
-Description=RotorHazard Server
-After=multi-user.target
-
-[Service]
-User=pi
-WorkingDirectory=/home/pi/RotorHazard/src/server
-ExecStart=/home/pi/RotorHazard/src/server/venv/bin/python server.py
-
-[Install]
-WantedBy=multi-user.target
+```bash
+cd ~/timer-dotfiles/components/scripts && bash pi-config.sh
 ```
+
+Install the RotorHazard startup service:
+
+```bash
+cd ~/timer-dotfiles/components/scripts && bash rh-service.sh
+```
+
+**Note:** _If you use a username other than pi, first edit the service file with your corresponding username._
+
+
 
 #### Plugins
 
