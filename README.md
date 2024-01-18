@@ -119,8 +119,6 @@ cd ~/timer-dotfiles/components/scripts && bash rh-service.sh
 
 **Note:** _If you use a username other than pi, first edit the service file with your corresponding username._
 
-
-
 ### Plugins
 
 With the bash script below you can install the [FPVScores](https://github.com/FPVScores/FPVScores) plugin, you can choose between `development` or `non-development` and if the plugin already exists whether you want to overwrite it.
@@ -137,15 +135,14 @@ cd ~/timer-dotfiles/components && bash stream-overlays.sh
 
 For example DDS uses: `dds-rotorhazard[number]` (by default the hostname is `raspberrypi`).
 
-1. Load the raspi-config tool by using the command below
+1. Open the TUI of Network Manager with:
 
 ```bash
-sudo raspi-config
+sudo nmtui
 ```
 
-2. Go to `System Options`.
-3. Choose for `S4 Hostname`.
-4. Change the hostname for something you want.
+2. Go to `Set system hostname`.
+3. Change the hostname for something you want and press `OK`.
 
 When you have completed these steps, reboot the Raspberry Pi and you are done.
 
