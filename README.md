@@ -87,14 +87,23 @@ When running the bash script below you have the option to install RotorHazard fo
 cd ~/timer-dotfiles/components && bash rotorhazard.sh
 ```
 
+During installation it will ask which GPIO pin you want to use, this concerns the shutdown button and differs per type of PCB you use.
+
+RotorHazard = GPIO18
+NuclearHazard = GPIO19
+
 ### Development
 
-If you opted for development, don't forget to check if an upstream repository is set, as this will make it easier to get updates from the RotorHazard project.
+If you opted for development, don't forget to check if an upstream repository is set, as this will make it easier to pull changes from the RotorHazard project.
 
 ```bash
 git remote -v
 git remote add upstream https://github.com/RotorHazard/RotorHazard.git
 ```
+
+#### Scripts
+
+By default you will be asked if you want to setup **raspi-config** and the **RotorHazard service**, if you want to do this later you can run the following commands.
 
 Set the correct raspi-config and boot file settings:
 

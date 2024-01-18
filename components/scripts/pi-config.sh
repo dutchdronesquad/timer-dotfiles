@@ -1,5 +1,11 @@
 #!/bin/bash
-echo "INFO: Update raspi-config settings"
+
+# Logging function
+log() {
+    echo "INFO: $1"
+}
+
+log "Update raspi-config settings"
 
 sudo raspi-config nonint do_ssh 0
 sudo raspi-config nonint do_spi 0
@@ -7,63 +13,29 @@ sudo raspi-config nonint do_i2c 0
 sudo raspi-config nonint do_serial_hw 0
 sudo raspi-config nonint do_serial_cons 1
 
-if grep -nq "dtparam=i2c_baudrate=75000" /boot/config.txt
-then
-	echo "INFO: dtparam=i2c_baudrate=75000 already set"
-else
-    sudo -- bash -c 'echo "dtparam=i2c_baudrate=75000" >> /boot/config.txt'
-fi
+# Function to append to the config file if the line is not present
+append_if_not_exists() {
+    grep -qF "$1" "$2" || echo "$1" | sudo tee -a "$2"
+}
 
-if grep -nq "dtoverlay=miniuart-bt" /boot/config.txt
-then
-	echo "INFO: dtoverlay=miniuart-bt already set"
-else
-    sudo -- bash -c 'echo "dtoverlay=miniuart-bt" >> /boot/config.txt'
-fi
+# Prompt user for GPIO pin
+read -p "Enter GPIO pin (default is 18): " GPIO_PIN
+GPIO_PIN=${GPIO_PIN:-18}
 
-if grep -nq "dtoverlay=act-led,gpio=24" /boot/config.txt
-then
-	echo "INFO: dtoverlay=act-led,gpio=24 already set"
-else
-    sudo -- bash -c 'echo "dtoverlay=act-led,gpio=24" >> /boot/config.txt'
-fi
+log "Update /boot/config.txt settings with GPIO pin $GPIO_PIN"
 
-if grep -nq "dtparam=act_led_trigger=heartbeat" /boot/config.txt
-then
-	echo "INFO: dtparam=act_led_trigger=heartbeat already set"
-else
-    sudo -- bash -c 'echo "dtparam=act_led_trigger=heartbeat" >> /boot/config.txt'
-fi
+append_if_not_exists "dtparam=i2c_baudrate=75000" /boot/config.txt
+append_if_not_exists "dtoverlay=miniuart-bt" /boot/config.txt
+append_if_not_exists "dtoverlay=act-led,gpio=24" /boot/config.txt
+append_if_not_exists "dtparam=act_led_trigger=heartbeat" /boot/config.txt
+append_if_not_exists "dtoverlay=gpio-shutdown,gpio_pin=$GPIO_PIN,debounce=5000" /boot/config.txt
+append_if_not_exists "dtoverlay=i2c-rtc,ds3231" /boot/config.txt
+append_if_not_exists "dtoverlay=gpio-fan,gpiopin=4,temp=48000" /boot/config.txt
 
-if grep -nq "dtoverlay=gpio-shutdown,gpio_pin=18,debounce=5000" /boot/config.txt
+if grep -qF "core_freq=250" /boot/config.txt
 then
-	echo "INFO: dtoverlay=gpio-shutdown,gpio_pin=18,debounce=5000 already set"
+    log "INFO: core_freq=250 already set"
 else
-    sudo -- bash -c 'echo "dtoverlay=gpio-shutdown,gpio_pin=18,debounce=5000" >> /boot/config.txt'
-fi
-
-if grep -nq "dtoverlay=i2c-rtc,ds3231" /boot/config.txt
-then
-	echo "INFO: dtoverlay=i2c-rtc,ds3231 already set"
-else
-    sudo -- bash -c 'echo "dtoverlay=i2c-rtc,ds3231" >> /boot/config.txt'
-fi
-
-if grep -nq "dtoverlay=gpio-fan,gpiopin=4,temp=48000" /boot/config.txt
-then
-	echo "INFO: dtoverlay=gpio-fan,gpiopin=4,temp=48000"
-else
-    sudo -- bash -c 'echo "dtoverlay=gpio-fan,gpiopin=4,temp=48000" >> /boot/config.txt'
-fi
-
-if grep -nq "core_freq=250" /boot/config.txt
-then
-	echo "INFO: core_freq=250 already set"
-else
-    sudo -- bash -c 'echo "[pi0]" >> /boot/config.txt'
-    sudo -- bash -c 'echo "[pi1]" >> /boot/config.txt'
-    sudo -- bash -c 'echo "[pi2]" >> /boot/config.txt'
-    sudo -- bash -c 'echo "[pi3]" >> /boot/config.txt'
-    sudo -- bash -c 'echo "core_freq=250" >> /boot/config.txt'
-    sudo -- bash -c 'echo "[all]" >> /boot/config.txt'
+    sudo sed -i '/\[pi[0-3]\]/a core_freq=250' /boot/config.txt
+    sudo sed -i '/\[all\]/a core_freq=250' /boot/config.txt
 fi
