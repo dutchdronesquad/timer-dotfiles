@@ -199,9 +199,13 @@ nmcli
 nmcli connection down "Wired connection 1" && nmcli connection up "Wired connection 1"
 ```
 
-#### Make new Wi-Fi connection
+### Make new Wi-Fi connection
 
-You can also create new connections via the Network Manager CLI:
+You can also create new connections via Network Manager, this can be done via the TUI or CLI.
+
+#### Command line interface (CLI)
+
+The device should be in range of the Wi-Fi network you want to connect to.
 
 ```bash
 sudo nmcli dev wifi connect "wifi name" password "password"
@@ -212,6 +216,33 @@ or if you want the password to be asked as input
 ```bash
 sudo nmcli --ask dev wifi connect "wifi name"
 ```
+
+#### Text user interface (TUI)
+
+To open the TUI of Network Manager, run the following command:
+
+```bash
+sudo nmtui
+```
+
+If you are **in** range of the Wi-Fi network you want to connect to, you do the following:
+
+1. Go to `Activate a connection`.
+2. Select the Wi-Fi network you want to connect to and press `Activate`.
+3. Enter the password and press `OK`.
+
+If you are **not in** range of the Wi-Fi network you want to connect to, you can create a new connection:
+
+1. Go to `Edit a connection` and press `Enter`.
+2. Select `Add` and press `Enter`.
+3. Select `Wi-Fi` and press `Enter`.
+4. Change the `Profile name` and set the `SSID` to the name of the Wi-Fi network you want to connect to.
+5. Under `Security` select the correct security type and enter the password.
+6. Go to the bottom and select `OK` and press `Enter`.
+7. Go to `Activate a connection` and press `Enter`.
+8. Select the connection you just created and press `Enter`.
+
+Read more about this [here](https://www.tecmint.com/nmtui-configure-network-connection/).
 
 ## Credits 🌟
 
