@@ -223,5 +223,5 @@ Distributed under the **MIT** License. See [`LICENSE`](LICENSE) for more informa
 
 <!-- LINKS -->
 [license-shield]: https://img.shields.io/github/license/dutchdronesquad/timer-dotfiles.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2023.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2024.svg
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
