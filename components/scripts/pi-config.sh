@@ -29,8 +29,6 @@ append_if_not_exists "dtoverlay=miniuart-bt" /boot/config.txt
 append_if_not_exists "dtoverlay=act-led,gpio=24" /boot/config.txt
 append_if_not_exists "dtparam=act_led_trigger=heartbeat" /boot/config.txt
 append_if_not_exists "dtoverlay=gpio-shutdown,gpio_pin=$GPIO_PIN,debounce=5000" /boot/config.txt
-append_if_not_exists "dtoverlay=i2c-rtc,ds3231" /boot/config.txt
-append_if_not_exists "dtoverlay=gpio-fan,gpiopin=4,temp=48000" /boot/config.txt
 
 if grep -qF "core_freq=250" /boot/config.txt
 then
