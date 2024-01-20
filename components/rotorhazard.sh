@@ -29,12 +29,16 @@ install_rotorhazard_dev() {
     # Update / install the venv packages
     update_virtualenv
 
+    # Change the RH config file
+    change_rh_config
+
     # Ask if raspi-config should be run
     read -r -p "Do you want to create the RotorHazard service? (y/n): " rh_service
     if [[ $rh_service =~ ^(y|Y)$ ]]; then
         create_rh_service
     fi
 
+    echo "INFO: Don't forget to reboot because of raspi-config changes!"
     echo "DONE: Ready with RotorHazard DEV installation"
 }
 
@@ -54,7 +58,8 @@ install_or_update_rotorhazard() {
         mv RotorHazard-$version RotorHazard
         rm temp.zip
 
-        setup_piconfig
+        # Change the RH config file
+        change_rh_config
     elif [[ $action =~ ^(u|update|U)$ ]]; then
         echo "INFO: Updating RotorHazard to version: $version"
         cd ~
@@ -118,6 +123,20 @@ setup_piconfig() {
 create_rh_service() {
     echo "INFO: Create the RotorHazard service"
     source ~/timer-dotfiles/components/scripts/rh-service.sh
+}
+
+# Update the RH config file
+change_rh_config() {
+    cd ~/RotorHazard/src/server
+    cp config-dist.json config.json
+
+    read -r -p "Are you using a Nuclearhazard PCB? (y/n): " answer
+    if [[ $answer =~ ^(y|Y)$ ]]; then
+        sed -i '/"GENERAL": {/a"SHUTDOWN_BUTTON_GPIOPIN": 19,' config.json
+        sed -i '/"SHUTDOWN_BUTTON_GPIOPIN": 19,/a"SHUTDOWN_BUTTON_DELAYMS": 2500,' config.json
+    else
+        echo "INFO: No changes made to the config file"
+    fi
 }
 
 # Update APT packages
