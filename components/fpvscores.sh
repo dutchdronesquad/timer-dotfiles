@@ -30,14 +30,13 @@ install_fpvscores() {
     fi
 
     # Install for non-development
-    cd ~
-    wget https://codeload.github.com/FPVScores/FPVScores/zip/main -O temp.zip
-    unzip temp.zip
+    wget https://codeload.github.com/FPVScores/FPVScores/zip/main -O ~/temp.zip
+    unzip ~/temp.zip
 
     # Move the plugin folder into RotorHazard and remove the rest
-    mv FPVScores-main/fpvscores $plugin_destination
-    rm -R FPVScores-main
-    rm temp.zip
+    mv ~/FPVScores-main/fpvscores $plugin_destination
+    rm -R ~/FPVScores-main
+    rm ~/temp.zip
 
     echo "INFO: FPVScores installed for non-development."
 }

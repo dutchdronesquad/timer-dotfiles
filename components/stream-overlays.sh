@@ -30,14 +30,13 @@ install_stream_overlays() {
     fi
 
     # Install for non-development
-    cd ~
-    wget https://codeload.github.com/dutchdronesquad/rh-stream-overlays/zip/main -O temp.zip
-    unzip temp.zip
+    wget https://codeload.github.com/dutchdronesquad/rh-stream-overlays/zip/main -O ~/temp.zip
+    unzip ~/temp.zip
 
     # Move the plugin folder into RotorHazard and remove the rest
-    mv rh-stream-overlays-main/stream_overlays $plugin_destination
-    rm -R rh-stream-overlays-main
-    rm temp.zip
+    mv ~/rh-stream-overlays-main/stream_overlays $plugin_destination
+    rm -R ~/rh-stream-overlays-main
+    rm ~/temp.zip
 
     echo "INFO: DDS Stream Overlays installed for non-development."
 }
