@@ -63,7 +63,7 @@ nvm alias default 20
 
 _First check your python version and if not install one with pyenv before continuing with the RotorHazard installation._
 
-Get RotorHazard and setup an [service](https://github.com/RotorHazard/RotorHazard/blob/main/doc/Software%20Setup.md#running-the-rotorhazard-server).
+Use the command below to install RotorHazard, the script is also suitable for use with NuclearHazard PCBs. I would recommend using python version 3.11 or 3.12.
 
 **Development:**
 

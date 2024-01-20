@@ -20,7 +20,7 @@ install_rotorhazard_dev() {
     # Ask if raspi-config should be run
     read -r -p "Do you want to change Raspberry Pi settings with raspi-config? (y/n): " raspi_config
     if [[ $raspi_config =~ ^(y|Y)$ ]]; then
-        setup_piconfig
+        setup_pi_config
     fi
 
     echo "INFO: Creating a virtual environment"
@@ -52,22 +52,24 @@ install_or_update_rotorhazard() {
         install_apt_packages
 
         echo "INFO: Download RotorHazard version: $version"
-        cd ~
-        wget https://codeload.github.com/RotorHazard/RotorHazard/zip/v$version -O temp.zip
-        unzip temp.zip
-        mv RotorHazard-$version RotorHazard
-        rm temp.zip
+        wget https://codeload.github.com/RotorHazard/RotorHazard/zip/v$version -O ~/temp.zip
+        unzip ~/temp.zip
+        mv ~/RotorHazard-$version ~/RotorHazard
+        rm ~/temp.zip
 
         # Change the RH config file
         change_rh_config
+
+        # Update raspi-config settings
+        setup_pi_config
     elif [[ $action =~ ^(u|update|U)$ ]]; then
         echo "INFO: Updating RotorHazard to version: $version"
         cd ~
-        wget https://codeload.github.com/RotorHazard/RotorHazard/zip/v$version -O temp.zip
-        unzip temp.zip
+        wget https://codeload.github.com/RotorHazard/RotorHazard/zip/v$version -O ~/temp.zip
+        unzip ~/temp.zip
         mv RotorHazard RotorHazard.old
         mv RotorHazard-$version RotorHazard
-        rm temp.zip
+        rm ~/temp.zip
 
         # Copy files from the old install
         cp RotorHazard.old/src/server/config.json RotorHazard/src/server/
@@ -114,7 +116,7 @@ update_virtualenv() {
 }
 
 # Setup the Raspi config and boot settings
-setup_piconfig() {
+setup_pi_config() {
     echo "INFO: Setup the Raspberry Pi config"
     source ~/timer-dotfiles/components/scripts/pi-config.sh
 }
