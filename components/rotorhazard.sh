@@ -134,8 +134,7 @@ change_rh_config() {
 
     read -r -p "Are you using a Nuclearhazard PCB? (y/n): " answer
     if [[ $answer =~ ^(y|Y)$ ]]; then
-        sed -i '/"GENERAL": {/a"SHUTDOWN_BUTTON_GPIOPIN": 19,' config.json
-        sed -i '/"SHUTDOWN_BUTTON_GPIOPIN": 19,/a"SHUTDOWN_BUTTON_DELAYMS": 2500,' config.json
+        echo "$(jq '.GENERAL += {"SHUTDOWN_BUTTON_GPIOPIN": 19, "SHUTDOWN_BUTTON_DELAYMS": 2500}' config.json)" > config.json
     else
         echo "INFO: No changes made to the config file"
     fi
