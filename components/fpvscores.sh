@@ -30,6 +30,7 @@ install_fpvscores() {
     fi
 
     # Install for non-development
+    cd ~
     wget https://codeload.github.com/FPVScores/FPVScores/zip/main -O ~/temp.zip
     unzip ~/temp.zip
 

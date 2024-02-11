@@ -30,6 +30,7 @@ install_stream_overlays() {
     fi
 
     # Install for non-development
+    cd ~
     wget https://codeload.github.com/dutchdronesquad/rh-stream-overlays/zip/main -O ~/temp.zip
     unzip ~/temp.zip
 
