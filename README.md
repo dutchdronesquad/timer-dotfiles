@@ -31,8 +31,9 @@ The following platforms are installed and set up by default with the bash script
 
 - GitHub CLI
 - Oh My Zsh (with powerlevel10k)
-- Pyenv
-- Nvm
+- [Pyenv](https://github.com/pyenv/pyenv)
+- [Uv](https://github.com/astral-sh/uv)
+- [Nvm](https://github.com/nvm-sh/nvm)
 
 ### Install a python version
 

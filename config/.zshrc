@@ -40,15 +40,44 @@ alias diskspace="sudo du -shx * | sort -rh | head -10"
 # Specific aliases for RotorHazard
 
 # Venv
-alias venv_enter="source venv/bin/activate"
-alias venv_create="python3 -m venv venv"
+alias venv_enter="source .venv/bin/activate"
+alias venv_create="python3 -m venv .venv"
 
 # Pip
 alias pip_freeze="pip freeze > requirements.txt"
 alias pip_install="pip install -r requirements.txt"
 
+# Uv
+alias uv_install="uv pip install -r requirements.txt"
+alias uv_venv="uv venv"
+alias uvdate="uv self update"
+
 # Pyenv
-alias pyenv_list="pyenv install --list | grep -E '^  3\.(10|11|12)\.[0-9]+$'"
+alias pyenv_list='pyenv install --list | grep -E "^\s*3\.(11|12|13)(\..*|-dev.*)"'
+
+# Git
+git_rm_branches() {
+  local branches=$(git branch | grep "$1")
+
+  if [ -z "$branches" ]; then
+    echo "No branches found matching pattern '$1'."
+    return 1
+  fi
+
+  echo "Branches found matching pattern '$1':"
+  echo "$branches"
+
+  read -r "REPLY?Do you want to delete these branches? (y/n): "
+  case "$REPLY" in
+    [Yy])
+      echo "$branches" | xargs git branch -D
+      echo "Branches deleted successfully."
+      ;;
+    *)
+      echo "Operation cancelled."
+      ;;
+  esac
+}
 
 # fzf
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -63,3 +92,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Uv
+. "$HOME/.cargo/env"
+. "/home/klaas/.cargo/env"
