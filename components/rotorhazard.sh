@@ -24,7 +24,7 @@ install_rotorhazard_dev() {
     fi
 
     echo "INFO: Creating a virtual environment"
-    python3 -m venv venv
+    python3 -m venv .venv
 
     # Update / install the venv packages
     update_virtualenv
@@ -86,7 +86,7 @@ install_or_update_rotorhazard() {
     # Create a venv when selected install action
     if [[ $action =~ ^(i|install|I)$ ]]; then
         echo "INFO: Creating a virtual environment"
-        python3 -m venv venv
+        python3 -m venv .venv
     fi
 
     # Update / install the packages in venv
@@ -110,8 +110,8 @@ install_or_update_rotorhazard() {
 update_virtualenv() {
     echo "INFO: Update venv packages"
 
-    source venv/bin/activate
-    pip install -r requirements.txt
+    source .venv/bin/activate
+    uv pip install -r requirements.txt
     deactivate
 }
 
