@@ -95,4 +95,3 @@ eval "$(pyenv init --path)"
 
 # Uv
 . "$HOME/.cargo/env"
-. "/home/klaas/.cargo/env"
