@@ -6,7 +6,7 @@ install_fpvscores_dev() {
     local username=${1:-FPVScores}  # Default username is FPVScores
 
     cd ~
-    git clone https://github.com/$username/FPVScores
+    git clone https://github.com/$username/FPVScores-Sync
 
     # Create a symlink with RotorHazard
     ln -s ~/FPVScores/fpvscores ~/RotorHazard/src/server/plugins
@@ -35,8 +35,8 @@ install_fpvscores() {
     unzip ~/temp.zip
 
     # Move the plugin folder into RotorHazard and remove the rest
-    mv ~/FPVScores-main/fpvscores $plugin_destination
-    rm -R ~/FPVScores-main
+    mv ~/FPVScores-Sync-main/fpvscores $plugin_destination
+    rm -R ~/FPVScores-Sync-main
     rm ~/temp.zip
 
     echo "INFO: FPVScores installed for non-development."
