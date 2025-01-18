@@ -39,6 +39,7 @@ alias diskspace="sudo du -shx * | sort -rh | head -10"
 
 # Specific aliases for RotorHazard
 alias rh_restart="sudo systemctl restart rotorhazard"
+alias rh_status="sudo systemctl status rotorhazard"
 
 # Venv
 alias venv_enter="source .venv/bin/activate"
