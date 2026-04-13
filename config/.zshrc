@@ -1,6 +1,11 @@
 # Zsh configuration file
 export SHELL=/usr/bin/zsh
 
+# Recover automatically when shell starts from a deleted directory.
+if [[ -z "${PWD:-}" || ! -d "$PWD" ]]; then
+  cd "$HOME" || return 1
+fi
+
 # Increase FUNCNEST to prevent "maximum nested function level reached" errors
 # This is needed for Oh My Posh + zsh-autosuggestions/zsh-syntax-highlighting
 export FUNCNEST=1000
