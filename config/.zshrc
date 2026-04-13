@@ -104,7 +104,7 @@ eval "$(pyenv virtualenv-init -)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Uv
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"c
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 eval "$(uv generate-shell-completion zsh)"
 
