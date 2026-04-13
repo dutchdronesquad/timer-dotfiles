@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Logging function
-log() {
-    echo "INFO: $1"
-}
+# Source shared logging library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../../lib/logger.sh"
 
-log "Update raspi-config settings"
+log_info "Update raspi-config settings"
 
 sudo raspi-config nonint do_ssh 0
 sudo raspi-config nonint do_spi 0
@@ -22,7 +22,7 @@ append_if_not_exists() {
 read -p "Enter GPIO pin (default is 18): " GPIO_PIN
 GPIO_PIN=${GPIO_PIN:-18}
 
-log "Update /boot/config.txt settings with GPIO pin $GPIO_PIN"
+log_info "Update /boot/config.txt settings with GPIO pin $GPIO_PIN"
 
 append_if_not_exists "dtparam=i2c_baudrate=75000" /boot/config.txt
 append_if_not_exists "dtoverlay=miniuart-bt" /boot/config.txt
@@ -32,7 +32,7 @@ append_if_not_exists "dtoverlay=gpio-shutdown,gpio_pin=$GPIO_PIN,debounce=5000" 
 
 if grep -qF "core_freq=250" /boot/config.txt
 then
-    log "INFO: core_freq=250 already set"
+    log_info "core_freq=250 already set"
 else
     sudo sed -i '/\[pi[0-3]\]/a core_freq=250' /boot/config.txt
     sudo sed -i '/\[all\]/a core_freq=250' /boot/config.txt

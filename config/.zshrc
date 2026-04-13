@@ -1,4 +1,9 @@
+# Zsh configuration file
 export SHELL=/usr/bin/zsh
+
+# Increase FUNCNEST to prevent "maximum nested function level reached" errors
+# This is needed for Oh My Posh + zsh-autosuggestions/zsh-syntax-highlighting
+export FUNCNEST=1000
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -8,9 +13,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Disable theme to use Oh My Posh instead
+ZSH_THEME=""
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 
 plugins=(
   pyenv
@@ -55,7 +63,7 @@ alias uv_venv="uv venv"
 alias uvdate="uv self update"
 
 # Pyenv
-alias pyenv_list='pyenv install --list | grep -E "^\s*3\.(11|12|13)(\..*|-dev.*)"'
+alias pyenv_list='pyenv install --list | grep -E "^\s*3\.(11|12|13|14)(\..*|-dev.*)"'
 
 # Git
 git_rm_branches() {
@@ -89,11 +97,16 @@ export PATH="./venv/bin:./node_modules/.bin:~/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(command pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Uv
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"c
+
+eval "$(uv generate-shell-completion zsh)"
+
+# Oh My Posh with custom theme - MUST be loaded LAST after all other plugins
+eval "$(oh-my-posh init zsh --config ~/.theme.omp.json)"

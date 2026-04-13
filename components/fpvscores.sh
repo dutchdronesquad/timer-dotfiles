@@ -1,16 +1,22 @@
-#!/bin/bash
-set -eu
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Source shared logging library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../lib/logger.sh"
+
+log_header "FPVScores Installation"
 
 # Function to install FPVScores plugin for development
 install_fpvscores_dev() {
     local username=${1:-FPVScores}  # Default username is FPVScores
 
     cd ~
-    git clone https://github.com/$username/FPVScores-Sync
+    git clone "https://github.com/$username/FPVScores-Sync"
 
     # Create a symlink with RotorHazard
     ln -s ~/FPVScores/fpvscores ~/RotorHazard/src/server/plugins
-    echo "INFO: FPVScores installed for development."
+    log_success "FPVScores installed for development."
 }
 
 # Function to install FPVScores plugin
@@ -22,10 +28,9 @@ install_fpvscores() {
         read -r -p "FPVScores plugin already exists. Do you want to overwrite it? [y|N] " answer
 
         if [[ $answer =~ ^(y|Y)$ ]]; then
-            rm -R $plugin_destination
+            rm -R "$plugin_destination"
         else
-            echo "INFO: FPVScores installation aborted."
-            exit 1
+            error "FPVScores installation aborted."
         fi
     fi
 
@@ -39,7 +44,7 @@ install_fpvscores() {
     rm -R ~/FPVScores-Sync-main
     rm ~/temp.zip
 
-    echo "INFO: FPVScores installed for non-development."
+    log_success "FPVScores installed for non-development."
 }
 
 # Check if RotorHazard folder exists in the home directory
@@ -49,12 +54,11 @@ if [ -d ~/RotorHazard ]; then
     if [[ $answer =~ ^(y|Y)$ ]]; then
         # Install for development
         read -r -p "Enter the GitHub username (press Enter for default 'FPVScores'): " username
-        install_fpvscores_dev $username
+        install_fpvscores_dev "$username"
     else
         # Install for non-development
         install_fpvscores
     fi
 else
-    echo "ERROR: RotorHazard folder not found in the home directory. Please install RotorHazard first."
-    exit 1
+    error "RotorHazard folder not found in the home directory. Please install RotorHazard first."
 fi

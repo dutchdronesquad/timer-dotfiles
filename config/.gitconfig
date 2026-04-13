@@ -31,3 +31,6 @@
 
 [init]
   defaultBranch = main
+[user]
+	name = Klaas Schoute
+	email = klaas_schoute@hotmail.com

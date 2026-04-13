@@ -1,8 +1,14 @@
-#!/bin/bash
-echo "INFO: Setup Rotorhazard service"
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Source shared logging library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../../lib/logger.sh"
+
+log_info "Setup Rotorhazard service"
 
 if [ -f "/lib/systemd/system/rotorhazard.service" ]; then
-    echo "ERROR: Rotorhazard service already exists."
+    log_warning "Rotorhazard service already exists."
 else 
     sed -i -e 's/pi/'$USER'/g' ~/timer-dotfiles/components/resources/rotorhazard.service
 
@@ -17,4 +23,4 @@ else
     # Start the service
     sudo systemctl start rotorhazard.service
 fi
-echo "DONE: Service has been created"
+log_success "Service has been created"
