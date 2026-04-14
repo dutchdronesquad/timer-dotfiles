@@ -2,6 +2,12 @@
 # Shared logging library for dotfiles components
 # Provides consistent, colorful logging across all scripts
 
+# Prevent reloading this library (avoids readonly redefinition errors).
+if [[ -n "${TIMER_DOTFILES_LOGGER_SH_LOADED:-}" ]]; then
+  return 0
+fi
+readonly TIMER_DOTFILES_LOGGER_SH_LOADED=1
+
 # Color codes
 readonly COLOR_RESET='\033[0m'
 readonly COLOR_BOLD='\033[1m'
